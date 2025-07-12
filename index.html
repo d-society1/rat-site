@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAT-вирусы: Угроза удалённого доступа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1a1a1a, #2c2c2c);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(to right, #ff4444, #ff6666);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 3px solid #ff8888;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        nav {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: #ff6666;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #2c2c2c;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+        h2 {
+            color: #ff6666;
+            border-bottom: 2px solid #ff8888;
+            padding-bottom: 12px;
+            font-size: 1.8em;
+        }
+        p {
+            margin: 20px 0;
+        }
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        .link-section {
+            background: linear-gradient(to right, #3a3a3a, #4a4a4a);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            transition: transform 0.3s ease;
+        }
+        .link-section:hover {
+            transform: scale(1.02);
+        }
+        .link-section a {
+            color: #ff6666;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .link-section a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(to right, #ff4444, #ff6666);
+            border-top: 3px solid #ff8888;
+            margin-top: 30px;
+        }
+        footer p {
+            margin: 0;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RAT-вирусы: Угроза удалённого доступа</h1>
+    </header>
+    <nav>
+        <a href="#about">О вирусе</a>
+        <a href="#how-it-works">Как работает</a>
+        <a href="#protection">Защита</a>
+        <a href="#source">Источник</a>
+    </nav>
+    <div class="container">
+        <section id="about">
+            <h2>Что такое RAT-вирус?</h2>
+            <p>RAT (Remote Access Trojan) — это троян удалённого доступа, замаскированный под легитимное программное обеспечение. Он позволяет злоумышленнику получить полный контроль над заражённым устройством: от управления файлами и веб-камерой до кражи паролей и слежки за действиями пользователя. RAT часто распространяется через фишинговые письма, вредоносные вложения или скомпрометированные сайты.</p>
+            <p>Название "RAT" (с англ. "крыса") отражает его скрытность: вирус незаметно проникает в систему и действует без ведома пользователя, подобно грызуну, крадущемуся в темноте.</p>
+        </section>
+        <section id="how-it-works">
+            <h2>Как работает RAT?</h2>
+            <p>RAT состоит из двух частей: серверной (устанавливается на устройство жертвы) и клиентской (используется злоумышленником). После заражения вирус открывает порт для удалённого подключения или сам инициирует соединение с сервером хакера. Это позволяет:</p>
+            <ul>
+                <li>Управлять файлами и процессами.</li>
+                <li>Записывать нажатия клавиш (кейлоггинг).</li>
+                <li>Снимать скриншоты и видео с веб-камеры.</li>
+                <li>Красть пароли и данные из буфера обмена.</li>
+                <li>Устанавливать дополнительное ПО.</li>
+            </ul>
+            <p>Пример: троян DarkComet позволяет злоумышленнику управлять мышью и клавиатурой жертвы в реальном времени, оставаясь незамеченным.</p>
+        </section>
+        <section id="protection">
+            <h2>Как защититься?</h2>
+            <p>Защита от RAT требует бдительности и комплексного подхода:</p>
+            <ol>
+                <li><strong>Антивирус:</strong> Установите надёжный антивирус (например, Kaspersky) и регулярно обновляйте базы.</li>
+                <li><strong>Осторожность с файлами:</strong> Не открывайте вложения из подозрительных писем и не скачивайте файлы с ненадёжных сайтов.</li>
+                <li><strong>Обновления:</strong> Регулярно обновляйте ОС и ПО для устранения уязвимостей.</li>
+                <li><strong>Фаервол:</strong> Настройте брандмауэр для блокировки подозрительных соединений.</li>
+                <li><strong>Переустановка:</strong> Если заражение подтверждено, создайте загрузочную флешку с чистой ОС, отформатируйте диск и установите систему заново.</li>
+            </ol>
+        </section>
+        <section id="source" class="link-section">
+            <h2>Источник информации</h2>
+            <p>Подробная статья о RAT-вирусах доступна по ссылке:</p>
+            <p><a href="https://www.kaspersky.ru/resource-center/threats/remote-access-trojan-rat" target="_blank">RAT-вирусы — Kaspersky</a></p>
+        </section>
+    </div>
+    <footer>
+        <p>Создано в условиях выживания. Используйте знания с осторожностью.</p>
+    </footer>
+</body>
+</html>
