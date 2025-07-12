@@ -3,146 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAT-вирусы: Угроза удалённого доступа</title>
+    <title>RAT-вирусы: Киберугроза из тени</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #1a1a1a, #2c2c2c);
-            color: #e0e0e0;
+        * {
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1c2526);
+            color: #d9e6e6;
+            line-height: 1.8;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%23ff1e1e" stroke-width="0.5" d="M0 50h100M50 0v100"/></svg>'), radial-gradient(circle, rgba(255, 30, 30, 0.3), transparent 70%);
+            background-size: 50px 50px, cover;
+            animation: neonGlow 12s infinite ease-in-out;
+            z-index: -1;
         }
         header {
-            background: linear-gradient(to right, #ff4444, #ff6666);
-            padding: 30px;
+            background: linear-gradient(to right, #ff1e1e, #ff4d4d);
+            padding: 60px 20px;
             text-align: center;
-            border-bottom: 3px solid #ff8888;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(45deg, transparent, rgba(255, 77, 77, 0.2), transparent);
+            animation: wave 15s infinite linear;
         }
         header h1 {
-            margin: 0;
-            font-size: 2.8em;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4em;
             color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 15px #ff1e1e, 0 0 30px #ff4d4d;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+        header:hover h1 {
+            transform: scale(1.05);
         }
         nav {
-            background-color: #333;
-            padding: 15px;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 20px;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
         nav a {
-            color: #ff6666;
+            font-family: 'Orbitron', sans-serif;
+            color: #ff4d4d;
             text-decoration: none;
-            margin: 0 20px;
-            font-weight: bold;
-            transition: color 0.3s ease;
+            margin: 0 35px;
+            font-weight: 700;
+            font-size: 1.3em;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff4d4d;
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
         }
         nav a:hover {
             color: #fff;
-            text-decoration: underline;
+            text-shadow: 0 0 10px #ff4d4d;
+            transform: translateY(-3px);
         }
         .container {
-            max-width: 850px;
-            margin: 30px auto;
-            padding: 25px;
-            background-color: #2c2c2c;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 50px;
+            background: rgba(20, 20, 20, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
         }
         h2 {
-            color: #ff6666;
-            border-bottom: 2px solid #ff8888;
-            padding-bottom: 12px;
-            font-size: 1.8em;
+            font-family: 'Orbitron', sans-serif;
+            color: #ff4d4d;
+            border-bottom: 4px solid #ff6666;
+            padding-bottom: 15px;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #ff4d4d;
+            position: relative;
+            z-index: 1;
         }
         p {
-            margin: 20px 0;
+            font-size: 1.3em;
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
         }
         ul, ol {
-            margin: 20px 0;
-            padding-left: 30px;
+            margin: 30px 0;
+            padding-left: 45px;
+            font-size: 1.2em;
+            position: relative;
+            z-index: 1;
         }
-        .link-section {
-            background: linear-gradient(to right, #3a3a3a, #4a4a4a);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 25px;
-            transition: transform 0.3s ease;
+        ul li, ol li {
+            margin-bottom: 10px;
         }
-        .link-section:hover {
-            transform: scale(1.02);
+        .telegram-section {
+            background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
+            padding: 35px;
+            border-radius: 15px;
+            margin-top: 40px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
         }
-        .link-section a {
-            color: #ff6666;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
+        .telegram-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 77, 77, 0.7);
         }
-        .link-section a:hover {
+        .telegram-section a {
+            font-family: 'Orbitron', sans-serif;
             color: #fff;
-            text-decoration: underline;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.4em;
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff1e1e, #ff4d4d);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.6);
+            transition: all 0.3s ease;
+        }
+        .telegram-section a:hover {
+            background: linear-gradient(45deg, #ff4d4d, #ff6666);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.9);
         }
         footer {
             text-align: center;
-            padding: 25px;
-            background: linear-gradient(to right, #ff4444, #ff6666);
-            border-top: 3px solid #ff8888;
-            margin-top: 30px;
+            padding: 50px;
+            background: linear-gradient(to right, #ff1e1e, #ff4d4d);
+            border-top: 5px solid #ff6666;
+            margin-top: 60px;
+            position: relative;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
         }
         footer p {
-            margin: 0;
+            font-family: 'Orbitron', sans-serif;
             color: #fff;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1.3em;
+            text-shadow: 0 0 10px #ff4d4d;
+        }
+        @keyframes neonGlow {
+            0% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+            100% { opacity: 0.4; transform: scale(1); }
+        }
+        @keyframes wave {
+            0% { transform: rotate(0deg) translateX(0); }
+            100% { transform: rotate(360deg) translateX(0); }
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.8em; }
+            nav a { margin: 0 20px; font-size: 1.1em; }
+            .container { padding: 30px; margin: 30px; }
+            h2 { font-size: 2em; }
+            p, ul, ol { font-size: 1.1em; }
+            .telegram-section a { font-size: 1.2em; padding: 12px 25px; }
+        }
+        @media (max-width: 480px) {
+            header h1 { font-size: 2.2em; }
+            nav a { margin: 0 10px; font-size: 1em; }
+            .container { padding: 20px; margin: 20px; }
+            h2 { font-size: 1.7em; }
+            p, ul, ol { font-size: 1em; }
+            .telegram-section a { font-size: 1.1em; padding: 10px 20px; }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>RAT-вирусы: Угроза удалённого доступа</h1>
+        <h1>RAT-вирусы: Киберугроза из тени</h1>
     </header>
     <nav>
         <a href="#about">О вирусе</a>
         <a href="#how-it-works">Как работает</a>
         <a href="#protection">Защита</a>
-        <a href="#source">Источник</a>
+        <a href="#telegram">Telegram</a>
     </nav>
     <div class="container">
         <section id="about">
             <h2>Что такое RAT-вирус?</h2>
-            <p>RAT (Remote Access Trojan) — это троян удалённого доступа, замаскированный под легитимное программное обеспечение. Он позволяет злоумышленнику получить полный контроль над заражённым устройством: от управления файлами и веб-камерой до кражи паролей и слежки за действиями пользователя. RAT часто распространяется через фишинговые письма, вредоносные вложения или скомпрометированные сайты.</p>
-            <p>Название "RAT" (с англ. "крыса") отражает его скрытность: вирус незаметно проникает в систему и действует без ведома пользователя, подобно грызуну, крадущемуся в темноте.</p>
+            <p>RAT (Remote Access Trojan) — это коварный троян, маскирующийся под безобидное ПО. Он открывает злоумышленнику полный доступ к устройству: от управления файлами и веб-камерой до кражи паролей и слежки за каждым действием. RAT проникает через фишинговые письма, вредоносные вложения или взломанные сайты.</p>
+            <p>Название "RAT" (с англ. "крыса") отражает его природу: он крадётся в систему, оставаясь невидимым, как призрак в цифровой тьме.</p>
         </section>
         <section id="how-it-works">
             <h2>Как работает RAT?</h2>
-            <p>RAT состоит из двух частей: серверной (устанавливается на устройство жертвы) и клиентской (используется злоумышленником). После заражения вирус открывает порт для удалённого подключения или сам инициирует соединение с сервером хакера. Это позволяет:</p>
+            <p>RAT состоит из двух частей: серверной (на устройстве жертвы) и клиентской (у хакера). После заражения он открывает порт для удалённого доступа или соединяется с сервером злоумышленника. Это позволяет:</p>
             <ul>
                 <li>Управлять файлами и процессами.</li>
-                <li>Записывать нажатия клавиш (кейлоггинг).</li>
+                <li>Записывать каждое нажатие клавиш (кейлоггинг).</li>
                 <li>Снимать скриншоты и видео с веб-камеры.</li>
                 <li>Красть пароли и данные из буфера обмена.</li>
-                <li>Устанавливать дополнительное ПО.</li>
+                <li>Устанавливать другое вредоносное ПО.</li>
             </ul>
-            <p>Пример: троян DarkComet позволяет злоумышленнику управлять мышью и клавиатурой жертвы в реальном времени, оставаясь незамеченным.</p>
+            <p>Пример: троян DarkComet позволяет хакеру в реальном времени управлять мышью и клавиатурой жертвы, оставаясь в тени.</p>
         </section>
         <section id="protection">
             <h2>Как защититься?</h2>
-            <p>Защита от RAT требует бдительности и комплексного подхода:</p>
+            <p>Защита от RAT требует бдительности и строгого подхода:</p>
             <ol>
                 <li><strong>Антивирус:</strong> Установите надёжный антивирус (например, Kaspersky) и регулярно обновляйте базы.</li>
-                <li><strong>Осторожность с файлами:</strong> Не открывайте вложения из подозрительных писем и не скачивайте файлы с ненадёжных сайтов.</li>
-                <li><strong>Обновления:</strong> Регулярно обновляйте ОС и ПО для устранения уязвимостей.</li>
+                <li><strong>Осторожность:</strong> Не открывайте подозрительные вложения и не скачивайте файлы с ненадёжных сайтов.</li>
+                <li><strong>Обновления:</strong> Обновляйте ОС и программы для закрытия уязвимостей.</li>
                 <li><strong>Фаервол:</strong> Настройте брандмауэр для блокировки подозрительных соединений.</li>
-                <li><strong>Переустановка:</strong> Если заражение подтверждено, создайте загрузочную флешку с чистой ОС, отформатируйте диск и установите систему заново.</li>
+                <li><strong>Переустановка:</strong> При заражении создайте загрузочную флешку, отформатируйте диск и установите чистую ОС.</li>
             </ol>
         </section>
-        <section id="source" class="link-section">
-            <h2>Источник информации</h2>
-            <p>Подробная статья о RAT-вирусах доступна по ссылке:</p>
-            <p><a href="https://www.kaspersky.ru/resource-center/threats/remote-access-trojan-rat" target="_blank">RAT-вирусы — Kaspersky</a></p>
+        <section id="telegram" class="telegram-section">
+            <h2>Наш Telegram-канал</h2>
+            <p>Присоединяйтесь к нашему сообществу для получения свежих новостей и советов по кибербезопасности:</p>
+            <p><a href="https://t.me/+CWpv-pyCXnoyNTJi" target="_blank">Перейти в Telegram</a></p>
         </section>
     </div>
     <footer>
-        <p>Создано в условиях выживания. Используйте знания с осторожностью.</p>
+        <p>Создано в борьбе за выживание. Знания — ваше оружие.</p>
     </footer>
 </body>
 </html>
